@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Technoholic 2025 — Meme Generator</title>
+
+  <style>
+    :root {
+      --bg1: #031633;
+      --bg2: #062b5b;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --glow: rgba(0, 150, 255, 0.12);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at top, var(--bg2), var(--bg1)),
+        url("https://i.postimg.cc/ydYxw0X7/blue-tech-lines.png");
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    /* Wrapper holds card + robot */
+    .card-wrap {
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ROBOT ICON (No smile) */
+    .robot {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 90px;
+      z-index: 10;
+      filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25));
+    }
+
+    /* Main card */
+    .card {
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 120px 18px 18px;  /* more top padding so body sits above title */
+      box-shadow: 0 10px 40px var(--glow);
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      color: #043a77;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .frame {
+      background: white;
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+      margin-bottom: 10px;
+    }
+
+    #meme {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: opacity .22s;
+      display: block;
+    }
+
+    .note-box {
+      text-align: left;
+      font-size: 14px;
+      color: #333;
+      margin-top: 10px;
+    }
+
+    #status {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    @media (max-width: 420px) {
+      .robot {
+        width: 70px;
+        height: 70px;
+      }
+      .card {
+        padding-top: 110px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card-wrap">
+
+    <!-- ⭐ TRANSPARENT ROBOT WITHOUT SMILE ⭐ -->
+    <svg class="robot" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <!-- Head -->
+      <rect x="20" y="20" width="80" height="60" rx="12" fill="#000"/>
+      <!-- Ears -->
+      <rect x="10" y="45" width="10" height="20" rx="3" fill="#000"/>
+      <rect x="100" y="45" width="10" height="20" rx="3" fill="#000"/>
+      <!-- Eyes -->
+      <circle cx="45" cy="50" r="10" fill="#fff"/>
+      <circle cx="75" cy="50" r="10" fill="#fff"/>
+      <!-- Body (NO SMILE) -->
+      <path d="M30 100 q30 -30 60 0" fill="#000"/>
+    </svg>
+
+    <!-- CARD -->
+    <div class="card">
+      <h1>WELCOME TO TECHNOHOLIC 2025</h1>
+
+      <div class="frame">
+        <img id="meme" src="" alt="Random Meme">
+      </div>
+
+      <div class="note-box">
+        <b>NOTE:</b><br>
+        • Refresh to get a new meme
+      </div>
+
+      <div id="status"></div>
+    </div>
+
+  </div>
+
+  <script>
+    const images = [
+      "https://i.postimg.cc/SNYwCyXv/funny-tech-joke.png",
+      "https://i.postimg.cc/2SpgxPvH/Machine-learning-be-like-Funny-meme.png",
+      "https://i.postimg.cc/13xbKL6v/meme-1.png",
+      "https://i.postimg.cc/Cxy94WDQ/ML-Theory-vs-Practice-vs-Actual-Meme-264x300.png",
+      "https://i.postimg.cc/fR41v6X6/old-meme.png",
+      "https://i.postimg.cc/zGm4k9Kr/pikachu-meme.png",
+      "https://i.postimg.cc/MpyN3dm2/Programmer-Humor-meme.png",
+      "https://i.postimg.cc/mgQJp8yG/programming-joke-Funny-meme.png",
+      "https://i.postimg.cc/K8nwpJDx/star-walk-on-tech-meme.png",
+      "https://i.postimg.cc/dV8pN4jq/tech-meme-on-AI.png",
+      "https://i.postimg.cc/W1MCYXwD/Tech-Meme-on-Linux.png",
+      "https://i.postimg.cc/3xgVfnF4/time-travel-meme.png",
+      "https://i.postimg.cc/3xgVfnFG/to-confuse-AI-meme-225x300.png",
+      "https://i.postimg.cc/zGn620FH/tom-AI-meme-300x251.png",
+      "https://i.postimg.cc/Zq4gGpw3/True-Funny-meme.png",
+      "https://i.postimg.cc/s2s8k7Tp/work-focus-meme.png"
+    ];
+
+    function pickRandom() {
+      return Math.floor(Math.random() * images.length);
+    }
+
+    function loadMeme() {
+      const idx = pickRandom();
+      const meme = document.getElementById("meme");
+      const status = document.getElementById("status");
+
+      meme.style.opacity = 0;
+      setTimeout(() => {
+        meme.src = images[idx];
+        meme.onload = () => (meme.style.opacity = 1);
+      }, 120);
+
+      status.textContent = "Meme ID: " + (idx + 1);
+    }
+
+    loadMeme();
+  </script>
+
+</body>
+</html>
