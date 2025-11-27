@@ -1,190 +1,206 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Technoholic 2025 — Meme Generator</title>
+  <title>Technoholic 2025 — Video Display</title>
 
   <style>
     :root {
-      --bg1: #031633;
-      --bg2: #062b5b;
+      --bg-color: #001a3d;
       --card-bg: rgba(255, 255, 255, 0.96);
-      --glow: rgba(0, 150, 255, 0.12);
+      --max-card-w: 720px;
     }
 
     html, body {
       height: 100%;
       margin: 0;
-    }
-
-    body {
-      font-family: "Inter", Arial, sans-serif;
+      font-family: Inter, Arial, sans-serif;
+      background-color: var(--bg-color);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background:
-        radial-gradient(circle at top, var(--bg2), var(--bg1)),
-        url("https://i.postimg.cc/ydYxw0X7/blue-tech-lines.png");
-      background-size: cover;
-      background-attachment: fixed;
+      box-sizing: border-box;
     }
 
-    /* Wrapper holds card + robot */
-    .card-wrap {
+    .wrap {
       width: 100%;
-      max-width: 420px;
-      position: relative;
-      display: flex;
-      justify-content: center;
+      max-width: var(--max-card-w);
     }
 
-    /* ROBOT ICON (No smile) */
+    /* BIG ROBOT ICON */
     .robot {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90px;
-      height: 90px;
-      z-index: 10;
-      filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25));
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
+      display: block;
+      margin: 0 auto -12px auto; /* exactly above heading */
     }
 
-    /* Main card */
     .card {
-      width: 100%;
       background: var(--card-bg);
       border-radius: 14px;
-      padding: 120px 18px 18px;  /* more top padding so body sits above title */
-      box-shadow: 0 10px 40px var(--glow);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      padding: 22px 18px 18px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
       position: relative;
     }
 
     h1 {
-      margin: 0 0 12px;
-      color: #043a77;
-      font-size: 20px;
+      margin: 0;
+      font-size: 22px;
+      color: #012c6d;
       font-weight: 700;
     }
 
     .frame {
-      background: white;
+      width: 100%;
+      background: linear-gradient(180deg, #fff, #f8f8f8);
       padding: 12px;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    #meme {
+    video#meme {
       width: 100%;
       height: auto;
-      border-radius: 10px;
-      transition: opacity .22s;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #000;
       display: block;
+      transition: opacity 0.25s ease;
     }
 
-    .note-box {
+    .note {
       text-align: left;
-      font-size: 14px;
       color: #333;
-      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 540px;
     }
 
-    #status {
-      margin-top: 6px;
-      font-size: 12px;
+    .status {
       color: #666;
+      font-size: 13px;
+      margin-top: 6px;
     }
 
-    @media (max-width: 420px) {
-      .robot {
-        width: 70px;
-        height: 70px;
-      }
-      .card {
-        padding-top: 110px;
-      }
+    @media (max-width: 520px) {
+      .robot { width: 110px; height: 110px; margin-bottom: -8px; }
+      h1 { font-size: 20px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="card-wrap">
-
-    <!-- ⭐ TRANSPARENT ROBOT WITHOUT SMILE ⭐ -->
-    <svg class="robot" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <!-- Head -->
-      <rect x="20" y="20" width="80" height="60" rx="12" fill="#000"/>
-      <!-- Ears -->
-      <rect x="10" y="45" width="10" height="20" rx="3" fill="#000"/>
-      <rect x="100" y="45" width="10" height="20" rx="3" fill="#000"/>
-      <!-- Eyes -->
-      <circle cx="45" cy="50" r="10" fill="#fff"/>
-      <circle cx="75" cy="50" r="10" fill="#fff"/>
-      <!-- Body (NO SMILE) -->
-      <path d="M30 100 q30 -30 60 0" fill="#000"/>
-    </svg>
-
-    <!-- CARD -->
+  <div class="wrap">
     <div class="card">
+
+      <!-- ⭐ BIG ROBOT LOGO ⭐ -->
+      <svg class="robot" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Head -->
+        <rect x="20" y="20" width="80" height="60" rx="12" fill="#000"/>
+        <!-- Ears -->
+        <rect x="10" y="45" width="10" height="20" rx="3" fill="#000"/>
+        <rect x="100" y="45" width="10" height="20" rx="3" fill="#000"/>
+        <!-- Eyes -->
+        <circle cx="45" cy="50" r="14" fill="#fff"/>
+        <circle cx="75" cy="50" r="14" fill="#fff"/>
+        <!-- Body -->
+        <path d="M30 110 q30 -30 60 0" fill="#000"/>
+      </svg>
+
       <h1>WELCOME TO TECHNOHOLIC 2025</h1>
 
       <div class="frame">
-        <img id="meme" src="" alt="Random Meme">
+        <video
+          id="meme"
+          playsinline
+          autoplay
+          loop
+          muted
+          preload="metadata"
+          aria-label="Video"
+        >
+          Your browser does not support HTML5 video.
+        </video>
       </div>
 
-      <div class="note-box">
-        <b>NOTE:</b><br>
-        • Refresh to get a new meme
+      <div class="note">
+        <strong>NOTE:</strong>
+        <ul style="margin: 8px 0 0 18px; padding: 0">
+          <li>Refresh the page to get a new video</li>
+        </ul>
       </div>
 
-      <div id="status"></div>
+      <div class="status" id="status">Loading…</div>
     </div>
-
   </div>
 
   <script>
-    const images = [
-      "https://i.postimg.cc/SNYwCyXv/funny-tech-joke.png",
-      "https://i.postimg.cc/2SpgxPvH/Machine-learning-be-like-Funny-meme.png",
-      "https://i.postimg.cc/13xbKL6v/meme-1.png",
-      "https://i.postimg.cc/Cxy94WDQ/ML-Theory-vs-Practice-vs-Actual-Meme-264x300.png",
-      "https://i.postimg.cc/fR41v6X6/old-meme.png",
-      "https://i.postimg.cc/zGm4k9Kr/pikachu-meme.png",
-      "https://i.postimg.cc/MpyN3dm2/Programmer-Humor-meme.png",
-      "https://i.postimg.cc/mgQJp8yG/programming-joke-Funny-meme.png",
-      "https://i.postimg.cc/K8nwpJDx/star-walk-on-tech-meme.png",
-      "https://i.postimg.cc/dV8pN4jq/tech-meme-on-AI.png",
-      "https://i.postimg.cc/W1MCYXwD/Tech-Meme-on-Linux.png",
-      "https://i.postimg.cc/3xgVfnF4/time-travel-meme.png",
-      "https://i.postimg.cc/3xgVfnFG/to-confuse-AI-meme-225x300.png",
-      "https://i.postimg.cc/zGn620FH/tom-AI-meme-300x251.png",
-      "https://i.postimg.cc/Zq4gGpw3/True-Funny-meme.png",
-      "https://i.postimg.cc/s2s8k7Tp/work-focus-meme.png"
+    const videos = [
+      "WhatsApp Video 2025-11-26 at 13.17.59_dfb422bc.mp4",
+      "WhatsApp Video 2025-11-26 at 13.33.58_f1afe69d.mp4",
+      "WhatsApp Video 2025-11-26 at 13.34.04_5bec75c6.mp4",
+      "WhatsApp Video 2025-11-26 at 13.34.04_c1b3e1ed.mp4",
+      "WhatsApp Video 2025-11-26 at 13.34.05_7330389c.mp4",
+      "WhatsApp Video 2025-11-26 at 18.19.35_b74426e8.mp4",
+      "WhatsApp Video 2025-11-26 at 18.20.46_678081fc.mp4",
+      "WhatsApp Video 2025-11-26 at 18.18.57_60747610.mp4",
+      "WhatsApp Video 2025-11-26 at 18.21.13_a3f0dd00.mp4",
+      "WhatsApp Video 2025-11-26 at 18.30.36_5966f415.mp4",
+      "WhatsApp Video 2025-11-26 at 18.38.36_262fec55.mp4",
+      "WhatsApp Video 2025-11-26 at 18.39.05_a129dc21.mp4",
+      "WhatsApp Video 2025-11-26 at 18.39.47_282e832b.mp4",
+      "WhatsApp Video 2025-11-26 at 18.41.07_67af0881.mp4",
+      "WhatsApp Video 2025-11-26 at 18.43.40_c55a8a6b.mp4"
     ];
 
-    function pickRandom() {
-      return Math.floor(Math.random() * images.length);
+    function pickRandomIndex() {
+      return Math.floor(Math.random() * videos.length);
     }
 
-    function loadMeme() {
-      const idx = pickRandom();
-      const meme = document.getElementById("meme");
+    (function showRandomOnLoad() {
+      const idx = pickRandomIndex();
+      const vid = document.getElementById("meme");
       const status = document.getElementById("status");
 
-      meme.style.opacity = 0;
-      setTimeout(() => {
-        meme.src = images[idx];
-        meme.onload = () => (meme.style.opacity = 1);
-      }, 120);
+      vid.style.opacity = 0;
 
-      status.textContent = "Meme ID: " + (idx + 1);
-    }
+      const tmp = document.createElement("video");
+      tmp.preload = "metadata";
+      tmp.muted = true;
+      tmp.playsInline = true;
+      tmp.src = videos[idx];
 
-    loadMeme();
+      tmp.addEventListener("loadeddata", () => {
+        vid.src = videos[idx];
+        vid.play().then(() => {
+          vid.style.opacity = 1;
+          status.textContent = "Playing (Video ID: " + (idx + 1) + ")";
+        }).catch(() => {
+          vid.controls = true;
+          vid.style.opacity = 1;
+          status.textContent = "Tap Play (Video ID: " + (idx + 1) + ")";
+        });
+      });
+
+      tmp.addEventListener("error", () => {
+        status.textContent = "Error loading video.";
+        vid.style.opacity = 1;
+      });
+
+      tmp.load();
+    })();
   </script>
 
 </body>
